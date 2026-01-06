@@ -1,6 +1,37 @@
+import { useState, useEffect } from 'react';
 import Card from './components/Card';
 
 function App() {
+    const URL = 'https://dragonball-api.com/api/characters?page=1&limit=15';
+
+    const [data, setData] = useState([]);
+    const [isloading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
+
+    useEffect(() => {
+        async function fetchData() {
+            setIsLoading(true);
+
+            try {
+                let response = await fetch(URL);
+                let res = await response.json();
+                setData(res.items);
+            } catch (error) {
+                setError(error);
+            }
+
+            setIsLoading(false);
+        }
+
+        fetchData();
+    }, []);
+
+    if (isloading) return <p>Loading...</p>;
+
+    if (error) {
+        alert(error);
+    }
+
     return (
         <>
             <header>
@@ -18,18 +49,9 @@ function App() {
                     more than once!
                 </p>
                 <div className="board">
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
-                    <Card />
+                    {data.map((item) => (
+                        <Card {...item} key={item.id} />
+                    ))}
                 </div>
             </main>
         </>
