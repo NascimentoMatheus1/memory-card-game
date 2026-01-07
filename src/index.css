@@ -35,8 +35,23 @@ header .scores-container {
 main {
     padding: 10px;
 }
-main p {
+main .info-container {
+    display: flex;
+    justify-content: space-between;
+}
+main .info-container p {
     font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
+}
+main .info-container button {
+    font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #eee708;
+}
+main .info-container button:hover{
+    background-color: hsl(58, 93%, 58%);
 }
 
 .board {
