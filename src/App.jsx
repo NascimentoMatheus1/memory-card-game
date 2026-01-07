@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
+import { ClipLoader } from 'react-spinners';
 import Card from './components/Card';
+import dbzNameSrc from './assets/dragon-ball-z-name.png';
 
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -36,7 +38,7 @@ function App() {
         setScore((s) => s + 1);
     }
 
-    const URL = 'https://dragonball-api.com/api/characters?page=1&limit=15';
+    const URL = 'https://dragonball-api.com/api/characters?page=1&limit=24';
 
     const [data, setData] = useState([]);
     const [isloading, setIsLoading] = useState(false);
@@ -49,7 +51,7 @@ function App() {
             try {
                 let response = await fetch(URL);
                 let res = await response.json();
-                setData(res.items);
+                setData(shuffle(res.items));
             } catch (error) {
                 setError(error);
             }
@@ -60,7 +62,16 @@ function App() {
         fetchData();
     }, []);
 
-    if (isloading) return <p>Loading...</p>;
+    if (isloading)
+        return (
+            <div className="loader-container">
+                <ClipLoader
+                    color="#36D7B7"
+                    size={50}
+                    aria-label="Loading Spinner"
+                />
+            </div>
+        );
 
     if (error) {
         alert(error);
@@ -70,10 +81,16 @@ function App() {
         <>
             <header>
                 <div>
-                    <h1 className="game-title">Dragon Ball Z Memory Game</h1>
+                    <div className="game-title">
+                        <img src={dbzNameSrc} alt="Dragon ball logo" />
+                        <p>
+                            <span className="game-title-yellow">Memory</span>{' '}
+                            <span className="game-title-red">Game</span>
+                        </p>
+                    </div>
                 </div>
                 <div className="scores-container">
-                    <p className="score">Score: {score}</p>
+                    <p className="score">Score: {score} / 12</p>
                     <p className="best-score">Best Score: {bestScore}</p>
                 </div>
             </header>
