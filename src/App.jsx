@@ -3,7 +3,6 @@ import { ClipLoader } from 'react-spinners';
 import Card from './components/Card';
 import BackCard from './components/BackCard';
 import useGameLogic from './hooks/useGameLogic';
-import Modal from './components/Modal';
 
 import dbzNameSrc from './assets/images/dragon-ball-z-name.png';
 import flipAudioSrc from './assets/audio/flipcard.mp3';

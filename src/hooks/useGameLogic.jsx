@@ -10,7 +10,7 @@ function shuffle(array) {
 }
 
 function useGameLogic() {
-    const numberOfCharacters = 4;
+    const numberOfCharacters = 12;
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [choices, setChoices] = useState([]);

@@ -1,16 +1,17 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    margin: 0;
-    padding: 0;
+    background-color: #ff4a09;
 }
 
 #root {
-    background-color: #ff4a09;
     color: #ffffff;
     position: relative;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    width: 100vw;
     font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
 }
 
@@ -20,16 +21,17 @@ header {
     padding: 5px;
     margin: 0;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 header .game-title {
-    font-size: clamp(1.5rem, 5vw + 1rem, 3rem);
+    font-size: clamp(1.3rem, 4vw + 1rem, 2.4rem);
     font-family: 'Saiyan Sans', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 header .game-title img {
-    max-width: 250px;
+    max-width: 200px;
 }
 header .game-title-red {
     color: #ff0000;
@@ -41,37 +43,33 @@ header .game-title-yellow {
 }
 
 header .scores-container {
+    padding: 0 20px;
     background-color: rgb(45, 45, 85);
     border-radius: 20px;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
     font-weight: 700;
 }
 main {
-    padding: 10px;
+    padding: 20px;
 }
 
-.board {
-    display: flex;
+main .board {
+    display: flex; 
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 2rem;
 }
 
-.card-container {
+main .board .card-container {
     width: 250px;
-    height: 300px;
+    height: 250px;
     margin: 20px;
     perspective: 800px;
     transform-origin: left;
     cursor: pointer;
     transition: transform 1000ms ease-in-out;
 }
-
-.card {
+.card-container .card {
     width: 100%;
     height: 100%;
     position: relative;
@@ -98,8 +96,8 @@ main {
 }
 
 .front .card-image {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     margin-bottom: 10px;
 }
@@ -132,7 +130,7 @@ main {
 }
 
 .controls {
-    margin: 10px;
+    margin: 5px;
     position: absolute;
     bottom: 0;
     left: 0;
