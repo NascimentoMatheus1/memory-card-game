@@ -1,10 +1,20 @@
+import { useState } from 'react';
 import { ClipLoader } from 'react-spinners';
 import Card from './components/Card';
 import BackCard from './components/BackCard';
-import dbzNameSrc from './assets/dragon-ball-z-name.png';
 import useGameLogic from './hooks/useGameLogic';
+import dbzNameSrc from './assets/images/dragon-ball-z-name.png';
+import flipAudioSrc from './assets/audio/flipcard.mp3';
+import soundtrackAudioSrc from './assets/audio/dbz-soundtrack.mp3';
+import musicNoteSrc from './assets/svg/music-note.svg';
+import musicNoteSlashSrc from './assets/svg/music-note-slash.svg';
 
 function App() {
+    const flipCardAudio = new Audio(flipAudioSrc);
+    // const soundtrackAudio = new Audio(soundtrackAudioSrc);
+    const [soundtrack, setSoundtrack] = useState(new Audio(soundtrackAudioSrc));
+    const [isSoundtrackOn, setIsSoundTrackOn] = useState(false);
+
     const {
         data,
         isloading,
@@ -30,6 +40,17 @@ function App() {
 
     if (error) {
         alert(error);
+    }
+
+    function playSoundtrack() {
+        if (soundtrack.paused) {
+            soundtrack.play();
+            soundtrack.loop = true;
+        } else {
+            soundtrack.pause();
+        }
+
+        setIsSoundTrackOn(!isSoundtrackOn);
     }
 
     return (
@@ -73,6 +94,7 @@ function App() {
                                     {...item}
                                     key={item.id}
                                     onClick={() => {
+                                        flipCardAudio.play();
                                         checkUserChoice(item.id);
                                     }}
                                 />
@@ -81,6 +103,12 @@ function App() {
                     ))}
                 </div>
             </main>
+            <button className="soundtrack-btn" onClick={playSoundtrack}>
+                <img
+                    src={isSoundtrackOn ? musicNoteSrc : musicNoteSlashSrc}
+                    alt="music note icon"
+                />
+            </button>
         </>
     );
 }

@@ -131,17 +131,28 @@ main .info-container button:hover {
     transform: rotateY(180deg);
 }
 
+.soundtrack-btn > img {
+    width: 30px;
+    height: 30px;
+}
+
+.soundtrack-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 20px;
+    padding: 10px;
+    border-radius: 50px;
+    border: none;
+    background-color: #eee708;
+    cursor: pointer;
+}
+
+.soundtrack-btn:hover {
+    background-color: hsl(58, 93%, 38%);
+}
+
 @font-face {
     font-family: 'Saiyan Sans';
     src: url('./fonts/Saiyan-Sans.ttf') format('truetype');
-}
-
-@keyframes flip {
-    0% {
-        transform: rotateY(0);
-    }
-
-    50% {
-        transform: rotateY(180deg);
-    }
 }

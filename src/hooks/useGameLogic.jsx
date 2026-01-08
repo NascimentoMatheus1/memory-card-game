@@ -17,12 +17,14 @@ function useGameLogic() {
     const [isFlipped, setIsFlipped] = useState(false);
 
     function gameOver() {
-        alert('Game over');
-        if (score > bestScore) {
-            setBestScore(score);
-        }
-        setChoices([]);
-        setScore(0);
+        setTimeout(() => {
+            alert('Game over');
+            if (score > bestScore) {
+                setBestScore(score);
+            }
+            setChoices([]);
+            setScore(0);
+        }, 1000);
     }
 
     function checkUserChoice(id) {
@@ -53,7 +55,6 @@ function useGameLogic() {
             const URL = `https://dragonball-api.com/api/characters?page=${pageNumber}&limit=${numberOfCharacters}`;
 
             setIsLoading(true);
-
             try {
                 let response = await fetch(URL);
                 let res = await response.json();

@@ -1,4 +1,4 @@
-import backImageSrc from '../assets/dragon-ball-cover.jpg';
+import backImageSrc from '../assets/images/dragon-ball-cover.jpg';
 
 function BackCard() {
     return (
