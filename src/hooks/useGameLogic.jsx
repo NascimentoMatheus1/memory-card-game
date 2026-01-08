@@ -10,10 +10,11 @@ function shuffle(array) {
 }
 
 function useGameLogic() {
-    const numberOfCharacters = 12;
+    const numberOfCharacters = 4;
     const [score, setScore] = useState(0);
     const [bestScore, setBestScore] = useState(0);
     const [choices, setChoices] = useState([]);
+    const [isFlipped, setIsFlipped] = useState(false);
 
     function gameOver() {
         alert('Game over');
@@ -25,20 +26,21 @@ function useGameLogic() {
     }
 
     function checkUserChoice(id) {
-        setData((d) => shuffle(d));
+        setIsFlipped(true);
+        setChoices((c) => [...c, id]);
 
         if (choices.includes(id)) {
             gameOver();
             return;
         }
-
-        setChoices((c) => [...c, id]);
         setScore((s) => s + 1);
     }
 
     function newCharacterList() {
         const newPageNumber = pageNumber > 3 ? 1 : pageNumber + 1;
         setPageNumber(newPageNumber);
+        setChoices([]);
+        setScore(0);
     }
 
     const [data, setData] = useState([]);
@@ -55,7 +57,7 @@ function useGameLogic() {
             try {
                 let response = await fetch(URL);
                 let res = await response.json();
-                setData(shuffle(res.items));
+                setData(res.items);
             } catch (error) {
                 setError(error);
             }
@@ -65,6 +67,22 @@ function useGameLogic() {
         fetchData();
     }, [pageNumber]);
 
+    useEffect(() => {
+        const timerID = setTimeout(() => {
+            setData((d) => shuffle(d));
+        }, 1000);
+
+        return () => clearInterval(timerID);
+    }, [score]);
+
+    useEffect(() => {
+        const timerID = setTimeout(() => {
+            setIsFlipped(false);
+        }, 1000);
+
+        return () => clearInterval(timerID);
+    }, [isFlipped]);
+
     return {
         score,
         bestScore,
@@ -72,6 +90,7 @@ function useGameLogic() {
         data,
         isloading,
         error,
+        isFlipped,
         newCharacterList,
         checkUserChoice,
     };

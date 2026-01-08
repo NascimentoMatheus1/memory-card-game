@@ -1,5 +1,6 @@
 import { ClipLoader } from 'react-spinners';
 import Card from './components/Card';
+import BackCard from './components/BackCard';
 import dbzNameSrc from './assets/dragon-ball-z-name.png';
 import useGameLogic from './hooks/useGameLogic';
 
@@ -10,6 +11,7 @@ function App() {
         error,
         score,
         bestScore,
+        isFlipped,
         numberOfCharacters,
         checkUserChoice,
         newCharacterList,
@@ -60,13 +62,22 @@ function App() {
 
                 <div className="board">
                     {data.map((item) => (
-                        <Card
-                            {...item}
-                            key={item.id}
-                            onClick={() => {
-                                checkUserChoice(item.id);
-                            }}
-                        />
+                        <div className="card-container">
+                            <div
+                                className={
+                                    isFlipped ? 'card flip-animation' : 'card'
+                                }
+                            >
+                                <BackCard />
+                                <Card
+                                    {...item}
+                                    key={item.id}
+                                    onClick={() => {
+                                        checkUserChoice(item.id);
+                                    }}
+                                />
+                            </div>
+                        </div>
                     ))}
                 </div>
             </main>

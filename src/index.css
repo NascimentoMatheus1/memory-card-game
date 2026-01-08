@@ -50,17 +50,40 @@ main .info-container button {
     cursor: pointer;
     background-color: #eee708;
 }
-main .info-container button:hover{
+main .info-container button:hover {
     background-color: hsl(58, 93%, 58%);
 }
 
 .board {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card-container {
+    width: 250px;
+    height: 300px;
+    margin: 20px;
+    perspective: 800px;
+    transform-origin: left;
+    cursor: pointer;
+    transition: transform 1000ms ease-in-out;
 }
 
 .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1000ms ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.front,
+.back {
     border: 1px solid hsl(0, 0%, 80%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0, 0%, 99%, 0.1);
@@ -68,25 +91,33 @@ main .info-container button:hover{
     margin: 10px;
     text-align: center;
     padding: 5px;
-    max-width: 300px;
-    display: inline-block;
-    cursor: pointer;
-    transition: transform 200ms ease-in;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
 }
-.card .card-image {
+
+.front .card-image {
     width: 250px;
     height: 250px;
     object-fit: contain;
     margin-bottom: 10px;
 }
-.card .card-title {
+.front .card-title {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     color: black;
 }
-.card:hover {
-    transform: translateY(-2px);
-    background-color: rgba(167, 243, 167, 0.354);
+.front:hover {
+    background-color: rgb(167, 243, 167);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+.back .card-image {
+    width: 100%;
+    height: 100%;
 }
 
 .loader-container {
@@ -96,7 +127,21 @@ main .info-container button:hover{
     transform: translate(-50%, -50%);
 }
 
+.flip-animation {
+    transform: rotateY(180deg);
+}
+
 @font-face {
     font-family: 'Saiyan Sans';
     src: url('./fonts/Saiyan-Sans.ttf') format('truetype');
+}
+
+@keyframes flip {
+    0% {
+        transform: rotateY(0);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
 }
