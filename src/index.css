@@ -1,6 +1,17 @@
 body {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
     background-color: #ff4a09;
     color: #ffffff;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
 }
 
 header {
@@ -8,7 +19,7 @@ header {
     display: flex;
     padding: 5px;
     margin: 0;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 header .game-title {
     font-size: clamp(1.5rem, 5vw + 1rem, 3rem);
@@ -28,30 +39,19 @@ header .game-title-yellow {
     color: #ffea16;
     -webkit-text-stroke: 1px black;
 }
-header .scores-container {
-    font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
-}
 
+header .scores-container {
+    background-color: rgb(45, 45, 85);
+    border-radius: 20px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 700;
+}
 main {
     padding: 10px;
-}
-main .info-container {
-    display: flex;
-    justify-content: space-between;
-}
-main .info-container p {
-    font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
-}
-main .info-container button {
-    font-size: clamp(1rem, 0.5vw + 1rem, 1.25rem);
-    padding: 12px 24px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    background-color: #eee708;
-}
-main .info-container button:hover {
-    background-color: hsl(58, 93%, 58%);
 }
 
 .board {
@@ -131,16 +131,33 @@ main .info-container button:hover {
     transform: rotateY(180deg);
 }
 
+.controls {
+    margin: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.controls .newChar-btn {
+    font-size: inherit;
+    padding: 12px 24px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background-color: #eee708;
+}
+.controls .newChar-btn:hover {
+    background-color: hsl(58, 93%, 58%);
+}
 .soundtrack-btn > img {
     width: 30px;
     height: 30px;
 }
 
 .soundtrack-btn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    margin: 20px;
     padding: 10px;
     border-radius: 50px;
     border: none;

@@ -3,6 +3,8 @@ import { ClipLoader } from 'react-spinners';
 import Card from './components/Card';
 import BackCard from './components/BackCard';
 import useGameLogic from './hooks/useGameLogic';
+import Modal from './components/Modal';
+
 import dbzNameSrc from './assets/images/dragon-ball-z-name.png';
 import flipAudioSrc from './assets/audio/flipcard.mp3';
 import soundtrackAudioSrc from './assets/audio/dbz-soundtrack.mp3';
@@ -11,7 +13,6 @@ import musicNoteSlashSrc from './assets/svg/music-note-slash.svg';
 
 function App() {
     const flipCardAudio = new Audio(flipAudioSrc);
-    // const soundtrackAudio = new Audio(soundtrackAudioSrc);
     const [soundtrack, setSoundtrack] = useState(new Audio(soundtrackAudioSrc));
     const [isSoundtrackOn, setIsSoundTrackOn] = useState(false);
 
@@ -43,14 +44,13 @@ function App() {
     }
 
     function playSoundtrack() {
+        setIsSoundTrackOn(!isSoundtrackOn);
         if (soundtrack.paused) {
             soundtrack.play();
             soundtrack.loop = true;
         } else {
             soundtrack.pause();
         }
-
-        setIsSoundTrackOn(!isSoundtrackOn);
     }
 
     return (
@@ -78,7 +78,6 @@ function App() {
                         Get points by clicking on an image but don't click on
                         any more than once!
                     </p>
-                    <button onClick={newCharacterList}>New Characters</button>
                 </div>
 
                 <div className="board">
@@ -103,12 +102,15 @@ function App() {
                     ))}
                 </div>
             </main>
-            <button className="soundtrack-btn" onClick={playSoundtrack}>
-                <img
-                    src={isSoundtrackOn ? musicNoteSrc : musicNoteSlashSrc}
-                    alt="music note icon"
-                />
-            </button>
+            <div className="controls">
+                <button className="soundtrack-btn" onClick={playSoundtrack}>
+                    <img
+                        src={isSoundtrackOn ? musicNoteSrc : musicNoteSlashSrc}
+                        alt="music note icon"
+                    />
+                </button>
+                <button className='newChar-btn' onClick={newCharacterList}>New Characters</button>
+            </div>
         </>
     );
 }
