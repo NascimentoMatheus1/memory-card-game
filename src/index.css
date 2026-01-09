@@ -93,13 +93,13 @@ main .board .card-container {
     height: 100%;
     position: absolute;
     backface-visibility: hidden;
+    overflow: hidden;
 }
 
 .front .card-image {
     width: 200px;
     height: 200px;
     object-fit: contain;
-    margin-bottom: 10px;
 }
 .front .card-title {
     font-family: Arial, Helvetica, sans-serif;
@@ -138,7 +138,6 @@ main .board .card-container {
     justify-content: flex-start;
     gap: 10px;
 }
-
 .controls .newChar-btn {
     font-size: inherit;
     padding: 12px 24px;
@@ -150,11 +149,11 @@ main .board .card-container {
 .controls .newChar-btn:hover {
     background-color: hsl(58, 93%, 58%);
 }
+
 .soundtrack-btn > img {
     width: 30px;
     height: 30px;
 }
-
 .soundtrack-btn {
     padding: 10px;
     border-radius: 50px;
@@ -162,7 +161,6 @@ main .board .card-container {
     background-color: #eee708;
     cursor: pointer;
 }
-
 .soundtrack-btn:hover {
     background-color: hsl(58, 93%, 38%);
 }
