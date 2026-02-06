@@ -1,4 +1,4 @@
-# 🧠 Memory Card Game - React Project
+# 🧠 Jogo de memória - React
 
 [Versão em Português](#-versão-em-português) | [English Version](#-english-version)
 
@@ -31,6 +31,8 @@ O objetivo é simples, mas desafiador: clique em uma carta, mas **nunca clique n
 ---
 
 ## 🇺🇸 English Version
+
+# 🧠 Memory Card Game - React Project
 
 This is an interactive memory game developed as part of the React curriculum. The main challenge was to manage dynamic states and integrate the application with an external API to fetch real-time data.
 
